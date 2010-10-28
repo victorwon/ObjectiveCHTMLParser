@@ -81,7 +81,7 @@ NSString * allNodeContents(xmlNode*node);
 
 //Returns the contents including html tags
 -(NSString*)rawContents;
-NSString * rawContentsOfNode(xmlNode * node, htmlDocPtr doc);
+NSString * rawContentsOfNode(xmlNode * node);
 
 //Returns the first level of children
 -(NSArray*)children;

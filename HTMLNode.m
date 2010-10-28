@@ -381,7 +381,7 @@ NSString * rawContentsOfNode(xmlNode * node)
 	xmlBufferPtr buffer = xmlBufferCreateSize(1000);
 	xmlOutputBufferPtr buf = xmlOutputBufferCreateBuffer(buffer, NULL);
 	
-	hxmlNodeDumpOutput(buf, node->doc, node, 3, 0, NULL);
+	htmlNodeDumpOutput(buf, node->doc, node, 3, 0, NULL);
 	
 	xmlOutputBufferFlush(buf);
 		
@@ -395,60 +395,6 @@ NSString * rawContentsOfNode(xmlNode * node)
 	xmlBufferFree(buffer);
 	
 	return string;
-
-	/*
-	 
-	xmlNode *cur_node = NULL;	
-	
-	if (node == NULL)
-		return;
-	
-	//For each child
-    for (cur_node = node; cur_node; cur_node = cur_node->next) 
-	{	
-		
-		//If text where not interested in the actuall tag
-		if (strcmp((const void*)cur_node->name, "text") == 0)
-		{
-			//Just append the contents
-			if (cur_node->content)
-			{
-				[string appendString:[NSString stringWithCString:(void*)cur_node->content encoding:NSUTF8StringEncoding]];
-			}
-			
-			continue;
-		}
-			
-		//Open the tag
-		[string appendFormat:@"<%s", cur_node->name];
-		
-		//Loop through each attribute
-		for(xmlAttrPtr attr = cur_node->properties; NULL != attr; attr = attr->next)
-		{		
-			[string appendFormat:@" %s=\"", attr->name];
-			for(xmlNode * child = attr->children; NULL != child; child = child->next)
-			{
-				[string appendFormat:@"%s\"", child->content];
-				break;
-			}
-		}
-		
-		//Close the tag
-		[string appendFormat:@">"];
-		
-		//Inser the contents and then append the end tag
-		if (cur_node->content)
-		{
-			[string appendString:[NSString stringWithCString:(void*)cur_node->content encoding:NSUTF8StringEncoding]];
-		}
-		
-		rawContentsAppendToString(string, cur_node->children);
-		
-		[string appendFormat:@"</%s>\n", cur_node->name];
-		
-	}	
-	 */
-
 }
 
 -(NSString*)rawContents {
