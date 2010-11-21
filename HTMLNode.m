@@ -381,8 +381,8 @@ NSString * rawContentsOfNode(xmlNode * node)
 	xmlBufferPtr buffer = xmlBufferCreateSize(1000);
 	xmlOutputBufferPtr buf = xmlOutputBufferCreateBuffer(buffer, NULL);
 	
-	htmlNodeDumpOutput(buf, node->doc, node, 3, 0, NULL);
-	
+	htmlNodeDumpFormatOutput(buf, node->doc, node, node->encoding);
+		
 	xmlOutputBufferFlush(buf);
 		
 	NSString * string = nil;
