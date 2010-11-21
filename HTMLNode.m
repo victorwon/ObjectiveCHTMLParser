@@ -398,7 +398,7 @@ NSString * rawContentsOfNode(xmlNode * node)
 }
 
 -(NSString*)rawContents {
-	rawContentsOfNode(_node);
+	return rawContentsOfNode(_node);
 }
 
 @end
