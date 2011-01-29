@@ -46,7 +46,12 @@
 			CFStringEncoding cfenc = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
 			CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
 			const char *enc = CFStringGetCStringPtr(cfencstr, 0);
-			_doc = htmlParseDoc((xmlChar*)[string UTF8String], enc);
+			// _doc = htmlParseDoc((xmlChar*)[string UTF8String], enc);
+			int optionsHtml = 0;
+			optionsHtml = optionsHtml | HTML_PARSE_RECOVER;
+			optionsHtml = optionsHtml | HTML_PARSE_NOERROR; //Uncomment this to see HTML errors
+			optionsHtml = optionsHtml | HTML_PARSE_NOWARNING;
+			_doc = htmlReadDoc ((xmlChar*)[string UTF8String], NULL, enc, optionsHtml);
 		}
 		else 
 		{
