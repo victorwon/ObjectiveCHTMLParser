@@ -84,7 +84,11 @@
 		}
 		else
 		{
-			*error = [NSError errorWithDomain:@"HTMLParserdomain" code:1 userInfo:nil];
+			if (error) 
+			{
+				*error = [NSError errorWithDomain:@"HTMLParserdomain" code:1 userInfo:nil];
+			}
+
 		}
 	}
 	
@@ -97,7 +101,10 @@
 	NSData * _data = [[NSData alloc] initWithContentsOfURL:url options:0 error:error];
 
 	if (_data == nil || *error)
+	{
+		[_data release];
 		return nil;
+	}
 	
 	[self initWithData:_data error:error];
 	
