@@ -67,6 +67,13 @@ void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value)
 -(NSString*)allContents;
 NSString * allNodeContents(xmlNode*node);
 
+
+//Returns next sibling in tree
+-(HTMLNode*)nextSibling;
+
+//Returns previous sibling in tree
+-(HTMLNode*)previousSibling;
+
 //Returns the contents
 -(NSString*)contents;
 

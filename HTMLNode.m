@@ -7,6 +7,7 @@
 //
 
 #import "HTMLNode.h"
+#import <libxml/HTMLtree.h>
 
 @implementation HTMLNode
 
@@ -15,6 +16,13 @@
 	return [[[HTMLNode alloc] initWithXMLNode:_node->parent] autorelease];	
 }
 
+-(HTMLNode*)nextSibling {
+	return [[[HTMLNode alloc] initWithXMLNode:_node->next] autorelease];
+}
+
+-(HTMLNode*)previousSibling {
+	return [[[HTMLNode alloc] initWithXMLNode:_node->prev] autorelease];	
+}
 
 void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value) {
 	
@@ -381,7 +389,7 @@ NSString * rawContentsOfNode(xmlNode * node)
 	xmlBufferPtr buffer = xmlBufferCreateSize(1000);
 	xmlOutputBufferPtr buf = xmlOutputBufferCreateBuffer(buffer, NULL);
 	
-	htmlNodeDumpFormatOutput(buf, node->doc, node, node->doc->encoding);
+	htmlNodeDumpOutput(buf, node->doc, node, (const char*)node->doc->encoding);
 		
 	xmlOutputBufferFlush(buf);
 		
