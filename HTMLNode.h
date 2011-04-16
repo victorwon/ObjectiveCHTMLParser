@@ -35,24 +35,30 @@ typedef enum
 
 @interface HTMLNode : NSObject 
 {
-	@public
-	
+@public
 	xmlNode * _node;
 }
 
-//Init with a lib xml node
+//Init with a lib xml node (shouldn't need to be called manually)
+//Use [parser doc] to get the root Node
 -(id)initWithXMLNode:(xmlNode*)xmlNode;
 
--(NSArray*)findChildrenOfClass:(NSString*)className;
+//Returns a single child of class
 -(HTMLNode*)findChildOfClass:(NSString*)className;
 
--(NSArray*)findChildrenWithAttribute:(NSString*)attribute matchingName:(NSString*)className allowPartial:(BOOL)partial;
+//Returns all children of class
+-(NSArray*)findChildrenOfClass:(NSString*)className;
+
+//Finds a single child with a matching attribute 
+//set allowPartial to match partial matches 
+//e.g. <img src="http://www.google.com> [findChildWithAttribute:@"src" matchingName:"google.com" allowPartial:TRUE]
 -(HTMLNode*)findChildWithAttribute:(NSString*)attribute matchingName:(NSString*)className allowPartial:(BOOL)partial;
+
+//Finds all children with a matching attribute
+-(NSArray*)findChildrenWithAttribute:(NSString*)attribute matchingName:(NSString*)className allowPartial:(BOOL)partial;
 
 //Gets the attribute value matching tha name
 -(NSString*)getAttributeNamed:(NSString*)name;
-NSString * getAttributeNamed(xmlNode * node, const char * nameStr);
-void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value);
 
 //Find childer with the specified tag name
 -(NSArray*)findChildTags:(NSString*)tagName;
@@ -63,19 +69,20 @@ void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value)
 //Returns the first child element
 -(HTMLNode*)firstChild;
 
-//Contents of this node and children
--(NSString*)allContents;
-NSString * allNodeContents(xmlNode*node);
+//Returns the plaintext contents of node
+-(NSString*)contents;
 
+//Returns the plaintext contents of this node + all children
+-(NSString*)allContents;
+
+//Returns the html contents of the node 
+-(NSString*)rawContents;
 
 //Returns next sibling in tree
 -(HTMLNode*)nextSibling;
 
 //Returns previous sibling in tree
 -(HTMLNode*)previousSibling;
-
-//Returns the contents
--(NSString*)contents;
 
 //Returns the class name
 -(NSString*)className;
@@ -86,15 +93,19 @@ NSString * allNodeContents(xmlNode*node);
 //Returns the parent
 -(HTMLNode*)parent;
 
-//Returns the contents including html tags
--(NSString*)rawContents;
-NSString * rawContentsOfNode(xmlNode * node);
-
 //Returns the first level of children
 -(NSArray*)children;
 
 //Returns the node type if know
 -(HTMLNodeType)nodetype;
+
+
+//C functions for minor performance increase in tight loops
+NSString * getAttributeNamed(xmlNode * node, const char * nameStr);
+void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value);
 HTMLNodeType nodeType(xmlNode* node);
+NSString * allNodeContents(xmlNode*node);
+NSString * rawContentsOfNode(xmlNode * node);
+
 
 @end
