@@ -27,6 +27,14 @@
 	return [[self doc] findChildTag:@"html"];
 }
 
+-(HTMLNode*)head
+{
+	if (_doc == NULL)
+		return NULL;
+
+	return [[self doc] findChildTag:@"head"];
+}
+
 -(HTMLNode*)body
 {
 	if (_doc == NULL)
