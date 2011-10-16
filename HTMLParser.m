@@ -113,7 +113,7 @@
 		return nil;
 	}
 	
-	[self initWithData:_data error:error];
+	self = [self initWithData:_data error:error];
 	
 	[_data release];
 	
