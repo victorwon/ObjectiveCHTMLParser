@@ -27,6 +27,14 @@
 	return [[self doc] findChildTag:@"html"];
 }
 
+-(HTMLNode*)head
+{
+	if (_doc == NULL)
+		return NULL;
+
+	return [[self doc] findChildTag:@"head"];
+}
+
 -(HTMLNode*)body
 {
 	if (_doc == NULL)
@@ -47,8 +55,7 @@
 			CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
 			const char *enc = CFStringGetCStringPtr(cfencstr, 0);
 			// _doc = htmlParseDoc((xmlChar*)[string UTF8String], enc);
-			int optionsHtml = 0;
-			optionsHtml = optionsHtml | HTML_PARSE_RECOVER;
+			int optionsHtml = HTML_PARSE_RECOVER;
 			optionsHtml = optionsHtml | HTML_PARSE_NOERROR; //Uncomment this to see HTML errors
 			optionsHtml = optionsHtml | HTML_PARSE_NOWARNING;
 			_doc = htmlReadDoc ((xmlChar*)[string UTF8String], NULL, enc, optionsHtml);
@@ -106,7 +113,7 @@
 		return nil;
 	}
 	
-	[self initWithData:_data error:error];
+	self = [self initWithData:_data error:error];
 	
 	[_data release];
 	

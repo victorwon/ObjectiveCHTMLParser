@@ -31,4 +31,7 @@
 //Returns the html tag
 -(HTMLNode*)html;
 
+//Returns the head tag
+- (HTMLNode*)head;
+
 @end
