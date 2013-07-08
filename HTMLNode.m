@@ -355,6 +355,12 @@ HTMLNodeType nodeType(xmlNode * _node)
 		return HTMLPreNode;
 	else if (strcmp(tagName, "blockquote") == 0)
 		return HTMLBlockQuoteNode;
+    else if (strcmp(tagName, "b") == 0)
+        return HTMLBoldNode;
+    else if (strcmp(tagName, "i") == 0)
+        return HTMLItalicNode;
+    else if (strcmp(tagName, "strike") == 0)
+        return HTMLStrikeNode;
 	else
 		return HTMLUnkownNode;
 	

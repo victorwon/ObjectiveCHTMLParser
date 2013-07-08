@@ -31,6 +31,9 @@ typedef enum
 	HTMLStrongNode,
 	HTMLPreNode,
 	HTMLBlockQuoteNode,
+    HTMLBoldNode,
+    HTMLItalicNode,
+    HTMLStrikeNode,
 } HTMLNodeType;
 
 @interface HTMLNode : NSObject 
