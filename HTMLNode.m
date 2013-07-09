@@ -345,7 +345,7 @@ HTMLNodeType nodeType(xmlNode * _node)
 		return HTMLUlNode;
 	else if (strcmp(tagName, "li") == 0)
 		return HTMLLiNode;
-	else if (strcmp(tagName, "image") == 0)
+	else if (strcmp(tagName, "img") == 0)
 		return HTMLImageNode;
 	else if (strcmp(tagName, "ol") == 0)
 		return HTMLOlNode;
@@ -361,6 +361,8 @@ HTMLNodeType nodeType(xmlNode * _node)
         return HTMLItalicNode;
     else if (strcmp(tagName, "strike") == 0)
         return HTMLStrikeNode;
+    else if (strcmp(tagName, "br") == 0)
+        return HTMLBrNode;
 	else
 		return HTMLUnkownNode;
 	
