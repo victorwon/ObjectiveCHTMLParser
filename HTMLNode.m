@@ -363,6 +363,10 @@ HTMLNodeType nodeType(xmlNode * _node)
         return HTMLStrikeNode;
     else if (strcmp(tagName, "br") == 0)
         return HTMLBrNode;
+    else if (strcmp(tagName, "em") == 0)
+        return HTMLEmNode;
+    else if (strcmp(tagName, "del") == 0)
+        return HTMLDelNode;
 	else
 		return HTMLUnkownNode;
 	

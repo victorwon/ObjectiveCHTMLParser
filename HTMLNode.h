@@ -18,29 +18,38 @@
 
 typedef enum
 {
-	HTMLHrefNode,
-	HTMLTextNode,
-	HTMLUnkownNode,
-	HTMLCodeNode,
-	HTMLSpanNode,
-	HTMLPNode,
-	HTMLLiNode,
-	HTMLUlNode,
-	HTMLImageNode,
-	HTMLOlNode,
-	HTMLStrongNode,
-	HTMLPreNode,
-	HTMLBlockQuoteNode,
+    HTMLUnkownNode,
+
+    HTMLHrefNode,
+    HTMLTextNode,
+    HTMLSpanNode,
+    
+    HTMLOlNode,
+    HTMLUlNode,
+    HTMLLiNode,
+    
+    HTMLImageNode,
+    
+    HTMLStrongNode,
+    HTMLEmNode,
+    HTMLDelNode,
+    
     HTMLBoldNode,
     HTMLItalicNode,
     HTMLStrikeNode,
-    HTMLBrNode
+    
+    HTMLPNode,
+    HTMLBrNode,
+    HTMLBlockQuoteNode,
+
+    HTMLPreNode,
+    HTMLCodeNode,
 } HTMLNodeType;
 
 @interface HTMLNode : NSObject 
 {
 @public
-	xmlNode * _node;
+    xmlNode * _node;
 }
 
 //Init with a lib xml node (shouldn't need to be called manually)
